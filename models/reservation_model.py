@@ -18,6 +18,7 @@ class Reservation(MongoIdModel):
     function_id: FlexibleModel
     pago_id: FlexibleModel
     cantidad_personas: int
+    precio: float
 
     status: Literal["En Proceso", "Confirmada", "Cancelada"] = "En Proceso"
 
