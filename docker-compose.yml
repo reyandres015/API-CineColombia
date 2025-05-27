@@ -1,0 +1,28 @@
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb-CineColombia
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+    restart: unless-stopped
+
+  api:
+    build: 
+      context: ./
+    container_name: fastapi-CineColombia
+    depends_on:
+      - mongodb
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=mongodb://admin:admin@mongodb-CineColombia:27017
+    volumes:
+      - ./:/app
+
+volumes:
+  mongo_data:
