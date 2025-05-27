@@ -33,3 +33,15 @@ class ReservationCreate(BaseModel):
     """
     function_id: str
     cantidad_personas: int
+
+
+class ReservationPromotionCode(BaseModel):
+    """
+    Modelo de datos para aplicar un código promocional a una reserva.
+
+    Atributos:
+        reservation_id (str): Identificador de la reserva a la que se aplica el código promocional.
+        codigo (str): Código promocional a aplicar.
+    """
+    reservation_id: str
+    codigo: str
